@@ -1,0 +1,27 @@
+﻿Show must go on!
+----------------
+Hráč musí zachránit divadlo před uzavřením tím, že udrží poslední divadelní hru v chodu.
+Hra je založená na získávání a uplatnění karet na jedno použití a divadelní hra se musí udržet v chodu po určitý poček kol.
+Hráš hraje za velkého šéfa (Bosse), kterému každé kolo donesou pracovníci divadla špatné zprávy, které se musí vyřešit.
+
+Překážky pro hráče:
+technické problémy s jevištěm (Výpadek elektřiny, rozbití kulis ...)
+posednutí herce duchem
+inspekce?
+
+
+akce:
+úkoly pro pracovníky divadla (omezit počet za tah, pracovník bude vyřazen ze zrdoje)
+divadelní nápověda - může řídit herce (například informovat o posednutí, improvizace za tmy)
+
+
+zdroje:
+počet kol do konce hry
+kvalita hry (Možnost rozdělit na jednotlivé události, které by vadili vybraným divákům)
+zaměstnanci divadla
+energie hráče
+
+ukončení hry:
+divadelní hra doběhla do konce
+kvalita hry klesla na 0
+odešli všichni diváci

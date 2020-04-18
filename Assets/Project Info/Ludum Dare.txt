@@ -1,0 +1,6 @@
+﻿This game is created for Ludum Dare 46 Compo
+https://ldjam.com/
+
+Theme: Keep it alive
+
+Author: Stanislav Tvrzník
