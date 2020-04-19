@@ -120,9 +120,6 @@ public class PlayManager : MonoBehaviour
      */
     public void EndTurn()
     {
-        EventManager.DispatchEvent("ReserveWorker");
-        EventManager.DispatchEvent("LowerPlayQuality");
-
         EventManager.DispatchEvent("ApplyResources");
         EventManager.DispatchEvent("ResolveEvents");
 

@@ -7,8 +7,73 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Back Wall
+    second: {fileID: 2100000, guid: 4199a8a65d8cab44f8f159e82534e382, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bricks16
+    second: {fileID: 2100000, guid: 4199a8a65d8cab44f8f159e82534e382, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Desk
+    second: {fileID: 2100000, guid: 20c9ea162fe4a394aa0364bd0799abd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Energy Wall
+    second: {fileID: 2100000, guid: c5d888dc44049604e9aa448ef79a66de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fabric01
+    second: {fileID: 2100000, guid: 309385e39ff39c24bac62b4cb07197ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: d8aa9c89a98edd740a3b5fb34cff47f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kulisa
+    second: {fileID: 2100000, guid: af5609fdeae012b4290a13c993d3628e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Napoveda
+    second: {fileID: 2100000, guid: 1347a2243b027014f92a4e937aa11bdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: No Name
+    second: {fileID: 2100000, guid: 66736476b943f6a4a8ede2b743688627, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks17
     second: {fileID: 2100000, guid: 506a99127fbace043a0336f753380b7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks18
+    second: {fileID: 2100000, guid: d8aa9c89a98edd740a3b5fb34cff47f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stage
+    second: {fileID: 2100000, guid: 506a99127fbace043a0336f753380b7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Visitor carpet
+    second: {fileID: 2100000, guid: 309385e39ff39c24bac62b4cb07197ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: 4199a8a65d8cab44f8f159e82534e382, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

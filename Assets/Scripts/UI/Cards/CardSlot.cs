@@ -15,7 +15,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
     {
         // check if something usefull dropped
         if (eventData.pointerDrag == null) return;
-
+        /*
         // check if something usefull is a card
         DragDropCard card = eventData.pointerDrag.GetComponent<DragDropCard>();
         if (card == null) return;
@@ -29,10 +29,10 @@ public class CardSlot : MonoBehaviour, IDropHandler
         CardHandler handler = eventData.pointerDrag.GetComponent<CardHandler>();
         if (handler == null) return;
 
-        SlotCard(handler);
+        PlaceCardInSlot(handler);*/
     }
 
-    public void SlotCard(CardHandler card)
+    public void PlaceCardInSlot(CardHandler card)
     {
         if (isActivator)
         {

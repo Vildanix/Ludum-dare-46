@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WinScreenHandler : MonoBehaviour
+public class ProblemCreator : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

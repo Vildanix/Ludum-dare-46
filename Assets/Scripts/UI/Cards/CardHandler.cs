@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CardHandler : MonoBehaviour
 {
-    private bool isSloted = false;
+    private bool isActivated = false;
     private bool hasEnougWorkers = true;
     private bool hasEnoughEnergy = true;
+
+    [SerializeField]
+    private CardSlot parentSlot;
+
+    [SerializeField]
+    private int energyCost = 1;
+
+    [SerializeField]
+    private int workerCost = 0;
 
     CanvasGroup canvasGroup;
 
@@ -17,11 +26,13 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         EventManager.RegisterListener("OnEnergyChange", ValidateEnergyUse);
 
         canvasGroup = GetComponent<CanvasGroup>();
+
+
     }
 
     public void ValidateWorkerUse()
     {
-        if (isSloted) return;
+        if (isActivated) return;
 
         EventManager.DispatchEventWithCallback("CheckWorkerCount", CheckAvailableWorkerCount);
     }
@@ -41,7 +52,7 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void ValidateEnergyUse()
     {
-        if (isSloted) return;
+        if (isActivated) return;
 
         EventManager.DispatchEventWithCallback("CheckEnergy", CheckAvailableEnergy);
     }
@@ -73,25 +84,11 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // show legend
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        // hide legend
-    }
-
-    public void setParent(RectTransform transform) {
-        GetComponent<RectTransform>().parent = transform;
-    }
-
     public void OnSlot()
     {
         EventManager.RegisterListener("ApplyResources", ApplyResources);
         EventManager.RegisterListener("ResolveEvents", ResolveEvents);
-        isSloted = true;
+        isActivated = true;
 
         ReserveResources();
     }
@@ -100,7 +97,7 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         EventManager.RegisterListener("ApplyResources", ApplyResources);
         EventManager.RegisterListener("ResolveEvents", ResolveEvents);
-        isSloted = false;
+        isActivated = false;
 
         FreeResources();
     }

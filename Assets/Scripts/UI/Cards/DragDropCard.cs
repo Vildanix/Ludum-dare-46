@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(CardHandler))]
 public class DragDropCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     public Transform dragParent;
-    private Transform originalParrent;
+    private CardHandler cardHandler;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        originalParrent = rectTransform.parent;
+        cardHandler = GetComponent<CardHandler>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -22,16 +23,6 @@ public class DragDropCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         rectTransform.SetParent(dragParent);
-    }
-
-    public Transform GetOriginalParent()
-    {
-        return originalParrent;
-    }
-
-    public void SetOriginalParent(Transform newParent)
-    {
-        originalParrent = newParent;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -47,12 +38,27 @@ public class DragDropCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnDrop(PointerEventData eventData)
     {
+        /*
         // check if something usefull dropped
         if (eventData.pointerDrag == null) return;
 
+        // check drop on another card, if yes, switch their slots
+        CardHandler card = eventData.pointerDrag.GetComponent<CardHandler>();
+        if (card != null) {
+            card.
+        }
+
+        // drop directly onto slot
+
+        // Check if card is dropped directly to card slot
+        CardSlot slot = eventData.pointerDrag.GetComponent<CardSlot>();
+        if (slot != null)
+        {
+            // check existing card for replacement in slot
+        }
+
         // check if something usefull is a card
-        DragDropCard card = eventData.pointerDrag.GetComponent<DragDropCard>();
-        if (card == null) return;
+        
 
         // switch card position
         Transform newOriginalPerent = card.GetOriginalParent();
@@ -65,13 +71,13 @@ public class DragDropCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         SetOriginalParent(newOriginalPerent);
 
         // get CardSlot after switch for new slotted card
-        CardSlot slot = newOriginalPerent.GetComponent<CardSlot>();
+        //CardSlot slot = newOriginalPerent.GetComponent<CardSlot>();
         if (!slot) return;
 
         // notify slot about new card handler
         CardHandler handler = GetComponent<CardHandler>();
         if (handler == null) return;
 
-        slot.SlotCard(handler);
+        slot.SlotCard(handler);*/
     }
 }
