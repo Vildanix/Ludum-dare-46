@@ -39,6 +39,7 @@ public class ActionSetter : MonoBehaviour
 
         EventManager.RegisterListener("ApplyActions", ApplyAction);
         EventManager.RegisterListener("NewRound", ReleaseBorrowedResources);
+        EventManager.RegisterListener("OnEnergyChange", ReevaluateActionIcons);
     }
 
     public void TogglePanel()
@@ -57,24 +58,29 @@ public class ActionSetter : MonoBehaviour
     {
         EventManager.DispatchEventWithCallback("CheckEnergy", (int energy) => { availableEnergy = energy; });
 
-        if (availableEnergy == 0)
+        if (availableEnergy < 1)
         {
             // disable all energy actions
-            //foreach ()
+            for (int i = 0; i < actionPanel.transform.childCount - 1; i++)
+            {
+                Button actionButton = actionPanel.transform.GetChild(i).GetComponent<Button>();
+                actionButton.interactable = false;
+            }
         }
         else
         {
-            // enable all energy actions
+            for (int i = 0; i < actionPanel.transform.childCount - 1; i++)
+            {
+                Button actionButton = actionPanel.transform.GetChild(i).GetComponent<Button>();
+                actionButton.interactable = true;
+            }
         }
     }
 
     public void ReleaseBorrowedResources()
     {
-        if (isPlayActive)
-        {
-            EventManager.DispatchEvent("FreeWorker");
-            isPlayActive = false;
-        }
+        FreeEnergy();
+        FreePlay();
     }
 
     public void RegisterActiveObstacle(string obstacleName)
@@ -174,17 +180,25 @@ public class ActionSetter : MonoBehaviour
                 break;
             case "FixObject":
                 EventManager.DispatchEventWithText("SolveObstacle", "BrokenObject");
+                if (unitActions.IsBadActor())
+                    EventManager.DispatchEvent("LowerPlayQuality");
                 break;
             case "FixCurtain":
                 EventManager.DispatchEventWithText("SolveObstacle", "BrokenCurtain");
+                if (unitActions.IsBadActor())
+                    EventManager.DispatchEvent("LowerPlayQuality");
                 break;
             case "FixHelper":
                 EventManager.DispatchEventWithText("SolveObstacle", "BrokenHelper");
+                if (unitActions.IsBadActor())
+                    EventManager.DispatchEvent("LowerPlayQuality");
                 break;
             case "FixGhost":
                 EventManager.DispatchEventWithText("SolveObstacle", "Ghost");
+                if (unitActions.IsBadActor())
+                    EventManager.DispatchEvent("LowerPlayQuality");
                 // borrow playwork for missing ghost
-
+                ReservePlay();
                 break;
             case "FixLight":
                 EventManager.DispatchEventWithText("SolveObstacle", "LightDown");
@@ -193,7 +207,6 @@ public class ActionSetter : MonoBehaviour
 
         activeAction = "";
 
-        FreeEnergy();
         HideActionPanel();
         ResetActionIcon();
     }

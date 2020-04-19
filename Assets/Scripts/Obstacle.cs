@@ -34,6 +34,7 @@ public class Obstacle : MonoBehaviour
         EventManager.RegisterListenerText("SolveObstacle", SolveObstacle);
 
         EventManager.DispatchEventWithText("ActivatedObstacle", obstacleEventName);
+
     }
 
     private void OnDisable()

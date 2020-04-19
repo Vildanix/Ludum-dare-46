@@ -43,6 +43,7 @@ public class Actor : GenericUnit
             Random.Range(wanderArea.bounds.min.z, wanderArea.bounds.max.z)
         );
 
-        agent.SetDestination(wanderPoint);
+        if (gameObject.activeSelf)
+            agent.SetDestination(wanderPoint);
     }
 }
