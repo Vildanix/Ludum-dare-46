@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Actor : MonoBehaviour
+public class Actor : GenericUnit
 {
     [SerializeField]
     private BoxCollider wanderArea;
@@ -14,9 +14,6 @@ public class Actor : MonoBehaviour
 
     private float actingDistance = 0.5f;
 
-    private bool isActing = false;
-    private bool isFixing = false;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,14 +22,14 @@ public class Actor : MonoBehaviour
             agent = GetComponent<NavMeshAgent>();
         }
 
-        EventManager.RegisterListener("OnTurnUpdate", WanderOnStage);
+        EventManager.RegisterListener("NewTurn", WanderOnStage);
     }
 
     void Update()
     {
         if (agent.remainingDistance < actingDistance)
         {
-            Act();
+            
         }
     }
 
@@ -47,10 +44,5 @@ public class Actor : MonoBehaviour
         );
 
         agent.SetDestination(wanderPoint);
-    }
-
-    private void Act()
-    {
-
     }
 }

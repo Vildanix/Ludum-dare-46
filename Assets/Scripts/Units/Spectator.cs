@@ -11,13 +11,16 @@ public class Spectator : MonoBehaviour
     [SerializeField]
     private NavMeshAgent agent;
 
-    private float actingDistance = 0.5f;
+    private float actingDistance = 1.5f;
 
     [SerializeField]
     private int expectedPlayQuality = 1;
 
     private Vector3 startingPosition = Vector3.zero;
     private Quaternion startingRotation = Quaternion.identity;
+
+    private bool isOut = false;
+    private bool isLeaving = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,10 +39,14 @@ public class Spectator : MonoBehaviour
 
     void Update()
     {
-        if (agent.remainingDistance < actingDistance)
-        {
-            Disapear();
+        if (agent.enabled) {
+            if (agent.remainingDistance < actingDistance && !isOut && isLeaving)
+            {
+                Disapear();
+                isOut = true;
+            }
         }
+        
     }
 
     public void OnPlayQualityChange()
@@ -49,7 +56,7 @@ public class Spectator : MonoBehaviour
 
     public void CheckMyExpectations(int playQuality)
     {
-        if (playQuality < expectedPlayQuality)
+        if (playQuality < expectedPlayQuality && !isLeaving)
         {
             StepOut();
         }
@@ -66,11 +73,14 @@ public class Spectator : MonoBehaviour
         );
 
         agent.SetDestination(wanderPoint);
+        isLeaving = true;
     }
 
     private void Disapear()
     {
-        // set invisible, disable agent collision
+        // teleport outside screen
+        agent.enabled = false;
+        transform.position += new Vector3(40, 0, 0);
     }
 
     private void ReturnToSeat()
@@ -79,5 +89,8 @@ public class Spectator : MonoBehaviour
         transform.rotation = startingRotation;
 
         // set visible, enable agent collision
+        isOut = false;
+        isLeaving = false;
+        agent.enabled = true;
     }
 }

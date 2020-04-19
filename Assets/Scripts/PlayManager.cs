@@ -120,8 +120,18 @@ public class PlayManager : MonoBehaviour
      */
     public void EndTurn()
     {
-        EventManager.DispatchEvent("ApplyResources");
+        EventManager.DispatchEvent("ApplyActions");
         EventManager.DispatchEvent("ResolveEvents");
+
+        if (!isPlayPaused && availableWorkersCount <= 0)
+        {
+            currentTurn++;
+            EventManager.DispatchEvent("OnTurnUpdate");
+        }
+        else
+        {
+            isPlayPaused = false;
+        }
 
         if (isPlayActive)
         {
@@ -134,18 +144,14 @@ public class PlayManager : MonoBehaviour
             }
         }
 
+        EventManager.DispatchEvent("FreeResources");
+
         // restore energy for next turn
         currentBossEnergy = maxBossEnergy;
         EventManager.DispatchEvent("OnEnergyChange");
 
-        if (!isPlayPaused)
-        {
-            currentTurn++;
-            EventManager.DispatchEvent("OnTurnUpdate");
-        } else
-        {
-            isPlayPaused = false;
-        }
+        
+        EventManager.DispatchEvent("NewTurn");
     }
 
     public void PausePlayForOneTurn()
@@ -180,13 +186,8 @@ public class PlayManager : MonoBehaviour
      * Reserve one worker for activity
      */
     public void ReserveWorker() {
-        if (availableWorkersCount > 0)
-        {
-            availableWorkersCount--;
-        } else
-        {
-            EventManager.DispatchEventWithText("Error", "There are no free workers left!");
-        }
+
+        availableWorkersCount--;
 
         EventManager.DispatchEvent("OnWorkerCountChange");
     }
@@ -201,7 +202,7 @@ public class PlayManager : MonoBehaviour
             availableWorkersCount++;
         } else
         {
-            EventManager.DispatchEventWithText("Error", "Teather already have maximum worker count!");
+            //EventManager.DispatchEventWithText("Error", "Teather already have maximum worker count!");
         }
 
         EventManager.DispatchEvent("OnWorkerCountChange");
@@ -218,7 +219,7 @@ public class PlayManager : MonoBehaviour
         }
         else
         {
-            EventManager.DispatchEventWithText("Error", "Boss doesn!t have enough energy this turn!");
+            EventManager.DispatchEventWithText("Error", "Not enough energy for this action!");
         }
 
         EventManager.DispatchEvent("OnEnergyChange");

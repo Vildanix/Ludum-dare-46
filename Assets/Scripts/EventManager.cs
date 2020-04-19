@@ -186,6 +186,9 @@ public class EventManager : MonoBehaviour
     public static void DispatchEventWithText(string eventName, string textValue)
     {
         UnityEvent<string> thisEvent = null;
+
+        if (!Instance.stringEventDictionary.ContainsKey(eventName)) return;
+
         if (Instance.stringEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.Invoke(textValue);

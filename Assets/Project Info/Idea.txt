@@ -25,3 +25,12 @@ ukončení hry:
 divadelní hra doběhla do konce
 kvalita hry klesla na 0
 odešli všichni diváci
+
+
+
+aktualizace:
+------------
+Herci musí odehrát každé kolo určitý počet scén. Pokud nejsou za tah odehrány všechny scény, hra se neposune.
+Herec může hrát nebo opravovat.
+Pracovník může opravovat nebo nahazovat světla, ale pokud opravuje, snižuje kvalitu hry
+(pokud bude čas) Boss může opravovat bez snižování kvality, ale stojí 2 energie
