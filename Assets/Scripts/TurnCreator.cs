@@ -15,7 +15,7 @@ public class TurnCreator : MonoBehaviour
     {
         EventManager.RegisterListener("NewRound", CreateTurnSet);
         EventManager.RegisterListener("Restart", PreparePlay);
-        EventManager.RegisterListenerText("FixObstacle", FixObstacle);
+        EventManager.RegisterListenerText("SolveObstacle", FixObstacle);
         obstaclePool = new List<Obstacle>();
 
     }
@@ -51,7 +51,7 @@ public class TurnCreator : MonoBehaviour
         }
         
         // chose how much work will this turn require
-        int requiredEnergy = Random.Range(1, 3);
+        int requiredEnergy = Random.Range(1, 4);
         int reducedWorkplay = Random.Range(0, Mathf.Min(requiredEnergy, 3)); // reserve play energy
 
         for (int i = 0; i < reducedWorkplay; i++)
