@@ -8,6 +8,8 @@ public class TurnCreator : MonoBehaviour
 
     public List<Obstacle> obstaclePool;
 
+    public List<Obstacle> solvedObstacles;
+
     [SerializeField]
     private int reservedWorkPlay = 0;
 
@@ -17,7 +19,7 @@ public class TurnCreator : MonoBehaviour
         EventManager.RegisterListener("Restart", PreparePlay);
         EventManager.RegisterListenerText("SolveObstacle", FixObstacle);
         obstaclePool = new List<Obstacle>();
-
+        solvedObstacles = new List<Obstacle>();
     }
 
     public void PreparePlay() {
@@ -36,7 +38,7 @@ public class TurnCreator : MonoBehaviour
         {
             if (obstacle.GetObstacleEventName().Equals(obstacleName))
             {
-                obstaclePool.Add(obstacle);
+                solvedObstacles.Add(obstacle);
                 break;
             }
         }
@@ -66,6 +68,13 @@ public class TurnCreator : MonoBehaviour
         {
             ActivateRandomObstacleFromPool();
         }
+
+        // copy solved obstacles to pool for next turn
+        foreach(Obstacle obstacle in solvedObstacles)
+        {
+            obstaclePool.Add(obstacle);
+        }
+        solvedObstacles.Clear();
     }
 
     public void ActivateRandomObstacleFromPool()

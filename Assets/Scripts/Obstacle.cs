@@ -53,6 +53,8 @@ public class Obstacle : MonoBehaviour
         {
             objectToEnable.SetActive(true);
         }
+
+        EventManager.DispatchEventWithText("ObstacleActivated", obstacleEventName);
     }
 
     public string GetObstacleEventName()
@@ -70,6 +72,8 @@ public class Obstacle : MonoBehaviour
         }
 
         Disable();
+
+        EventManager.DispatchEventWithText("ObstacleDeactivated", obstacleEventName);
     }
 
     public void Disable()
